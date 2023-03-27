@@ -16,7 +16,7 @@ Data cleaning is performed according to section 6.1.1 of the original paper, whi
 
 __Important Replication Note on Sampling Strategy__ 
 
-According to Pryzant et. al (2021), the dataset `music.tsv` on the original project's github repository (https://github.com/rpryzant/causal-text) will have around 17000 samples after the cleaning. However, taking the same procedure, I obtained ~56K samples. 
+According to Pryzant et. al (2021), the dataset `music.tsv` on the original project's github repository (https://github.com/rpryzant/causal-text) will have around 17000 samples after the cleaning. However, taking the same procedure as suggested by the paper, I obtained ~56K samples. 
 
 Upon further examination, in their source code, the authors balanced the dataset by:
 
