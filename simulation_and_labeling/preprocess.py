@@ -13,6 +13,7 @@ import os
 if __name__ == "__main__":
     ## The file to be processed
     input_file = "~/downloads/Project/SP23_causal_text/data/music.tsv"
+    save_file = "~/downloads/Project/SP23_causal_text/data/music_rep_preprocessed.parquet"
 
 
     ###########################
@@ -41,7 +42,18 @@ if __name__ == "__main__":
 
     output_data = raw_data[["text", "confound", "true_label", "proxy_noise", "proxy_lex"]]
 
-    output_data.to_parquet(os.path.join(os.path.dirname(__file__), "music_rep_preprocessed.parquet"))
+
+    ### The original data has adjusted for the propensity in that it makes P(T=1|C=0) = 0.9 and P(T=1|C=1) = 0.7, 
+    ##  WHICH IS NOT STATED in the paper but performed in the actual code
+    output_data = pre_helper.adjust_for_propensity(output_data, 0.9, 0.7)
+
+    ## Perform adjustment on the proxy_lex data for propensity
+    ## WHICH IS NOT STATED in the paper but performed in the actual code
+    output_data = pre_helper.precision_recall_adjustment(output_data, column = "proxy_lex", 
+                                                         precision = 0.94, recall = 0.98)
+    
+
+    output_data.to_parquet(save_file)
 
 
     
