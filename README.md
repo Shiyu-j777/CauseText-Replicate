@@ -14,7 +14,7 @@ Data cleaning is performed according to section 6.1.1 of the original paper, whi
 
 4) Define Proxy-lex labels ($\hat{T}_{lexicon}$): an indicator of whether there is an overlap with the positive lexicon
 
-__sampling strategy:__ 
+__Important Replication Note on Sampling Strategy__ 
 
 According to Pryzant et. al (2021), the dataset `music.tsv` on the original project's github repository (https://github.com/rpryzant/causal-text) will have around 17000 samples after the cleaning. However, taking the same procedure, I obtained ~56K samples. 
 
