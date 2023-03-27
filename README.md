@@ -20,7 +20,7 @@ According to Pryzant et. al (2021), the dataset `music.tsv` on the original proj
 
 Upon further examination, in their source code, the authors balanced the dataset by:
 
-1) Dropping some data so the propensity to 0.9 ($P(T=1|C=0)$) and 0.7 ($P(T=1|C=1)$), and then 
+1) Dropping some data so the propensity to $P(T=1|C=0) = 0.9$ and $P(T=1|C=1) = 0.7$, and then 
 
 2) For the proxy label, further drop some data such that they have a 0.94 precision and 0.98 recall (They resemble cases when the true_labels can be discovered all the time). 
 
