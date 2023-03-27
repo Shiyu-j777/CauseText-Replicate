@@ -12,9 +12,9 @@ Data cleaning is performed according to section 6.1.1 of the original paper, whi
 
 3) Define Proxy-noise labels ($\hat{T}_{noise}$): randomly assigned wrong labels based on True Treatment label.
 
-4) Define Proxy-lex labels ($\hat{T}_{lexicon}$): based on the overlap with the positive lexicon
+4) Define Proxy-lex labels ($\hat{T}_{lexicon}$): an indicator of whether there is an overlap with the positive lexicon
 
-_A side Note on sampling strategy:_ 
+__sampling strategy:__ 
 
 According to Pryzant et. al (2021), the dataset `music.tsv` on the original project's github repository (https://github.com/rpryzant/causal-text) will have around 17000 samples after the cleaning. However, taking the same procedure, I obtained ~56K samples. 
 
@@ -24,4 +24,9 @@ Upon further examination, in their source code, the authors balanced the dataset
 
 2) For the proxy label, further drop some data such that they have a 0.94 precision and 0.98 recall (They resemble cases when the true_labels can be discovered all the time). 
 
-_Side Note:_ I would argue that low recall, high precision should be the feature of the designed proxy labels: the T-boost will improve the estimation by flipping over 0 labels, which presumably helps only when increasing recall is more important.
+_Side Note 1:_ I would argue that low recall, high precision should be the feature of the designed proxy labels: the T-boost will improve the estimation by flipping over 0 labels, which presumably helps only when increasing recall is more important.
+
+
+## T-boosting
+
+For the rest of the steps, I develop my results on the proxy lexicon labels ($\hat{T}_{lexicon}$).
