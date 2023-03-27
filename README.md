@@ -24,9 +24,13 @@ Upon further examination, in their source code, the authors balanced the dataset
 
 2) For the proxy label, further drop some data such that they have a 0.94 precision and 0.98 recall (They resemble cases when the true_labels can be discovered all the time). 
 
+Using the same setup, I am able to obtain a similarly-sized dataset of ~16K observations.
+
 _Side Note 1:_ I would argue that low recall, high precision should be the feature of the designed proxy labels: the T-boost will improve the estimation by flipping over 0 labels, which presumably helps only when increasing recall is more important.
 
 
 ## T-boosting
 
 For the rest of the steps, I develop my results on the proxy lexicon labels ($\hat{T}_{lexicon}$).
+
+
