@@ -33,5 +33,7 @@ _Side Note 1:_ I would argue that low recall, high precision should be the featu
 
 For the rest of the steps, I develop my results on the proxy lexicon labels ($\hat{T}_{lexicon}$).
 
+The paper mentioned simple logistic regression estimator, while the paper also tested PU estimator.
+
 
 
