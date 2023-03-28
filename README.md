@@ -35,5 +35,22 @@ For the rest of the steps, I develop my results on the proxy lexicon labels ($\h
 
 The paper mentioned simple logistic regression estimator, while the paper also tested PU estimator.
 
+The steps include:
+
+1) Using a classifier to predict treatment label
+
+> In this case, the classifier uses binary indicator of whether the text includes the top 2000 words.
+
+2) Flip 0 labels to 1 if $P_{\theta}(T = 1|W_i) > 0.5$.
+
+**Implementation Notes:**
+
+
+For this step, the paper doesn't seem to do the exact same thing as described in the dataset. 
+
+1) Section 5.1 suggests a cut off of 0.5 based on the probability. However, the authors are using a cut off of **0.22 on the z-score of the predicted probabilities for zero labels.**
+
+
+
 
 
