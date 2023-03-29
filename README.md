@@ -6,13 +6,13 @@ This is a replicate project that aims to replicate the simulation results (Secti
 
 Data cleaning is performed according to section 6.1.1 of the original paper, which are:
 
-1) Define True Labels ($\tilde{T}$): label all 5-star comments as 1 and all 1/2 star comments as 0
+a. Define True Labels ($\tilde{T}$): label all 5-star comments as 1 and all 1/2 star comments as 0
 
-2) Label Confounder Variable ($C$): label entries about CD as 1 and other as 0
+b. Label Confounder Variable ($C$): label entries about CD as 1 and other as 0
 
-3) Define Proxy-noise labels ($\hat{T}_{noise}$): randomly assigned wrong labels based on True Treatment label.
+c. Define Proxy-noise labels ($\hat{T}_{noise}$): randomly assigned wrong labels based on True Treatment label.
 
-4) Define Proxy-lex labels ($\hat{T}_{lexicon}$): an indicator of whether there is an overlap with the positive lexicon
+d. Define Proxy-lex labels ($\hat{T}_{lexicon}$): an indicator of whether there is an overlap with the positive lexicon
 
 __Important Replication Note on Sampling Strategy__ 
 
@@ -20,9 +20,9 @@ According to Pryzant et. al (2021), the dataset `music.tsv` on the original proj
 
 Upon further examination, in their source code, the authors balanced the dataset by:
 
-1) Dropping some data so the propensity to $P(T=1|C=0) = 0.9$ and $P(T=1|C=1) = 0.7$, and then 
+a. Dropping some data so the propensity to $P(T=1|C=0) = 0.9$ and $P(T=1|C=1) = 0.7$, and then 
 
-2) For the proxy label, further drop some data such that they have a 0.94 precision and 0.98 recall (They resemble cases when the true_labels can be discovered all the time). 
+b. For the proxy label, further drop some data such that they have a 0.94 precision and 0.98 recall (They resemble cases when the true_labels can be discovered all the time). 
 
 Using the same setup, I am able to obtain a similarly-sized dataset of ~16K observations.
 
@@ -36,13 +36,13 @@ For the rest of the steps, I develop my results on the proxy lexicon labels ($\h
 
 The steps include:
 
-1) Using a classifier to predict treatment label, namely predicting $P_{\theta}(\hat{T}=1|W_i)$
+a. Using a classifier to predict treatment label, namely predicting $P_{\theta}(\hat{T}=1|W_i)$
 
-a. In this case, the classifier uses binary indicator of whether the text includes the top 2000 words.
+1) In this case, the classifier uses binary indicator of whether the text includes the top 2000 words.
 
-b. The paper mentioned simple logistic regression estimator, while the paper also tested PU (Positive and Unlabelled) estimator.
+2) The paper mentioned simple logistic regression estimator, while the paper also tested PU (Positive and Unlabelled) estimator.
 
-2) Flip 0 labels to 1 if $P_{\theta}(T = 1|W_i) > 0.5$. The resulting label is $\hat{T}_{lexicon}^*$ in section 5.1.
+b. Flip 0 labels to 1 if $P_{\theta}(T = 1|W_i) > 0.5$. The resulting label is $\hat{T}_{lexicon}^*$ in section 5.1.
 
 **Implementation Notes:**
 
