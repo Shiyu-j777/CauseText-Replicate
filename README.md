@@ -33,13 +33,14 @@ _Side Note 1:_ I would argue that low recall, high precision should be the featu
 
 For the rest of the steps, I develop my results on the proxy lexicon labels ($\hat{T}_{lexicon}$).
 
-The paper mentioned simple logistic regression estimator, while the paper also tested PU (Positive and Unlabelled) estimator.
 
 The steps include:
 
-1) Using a classifier to predict treatment label
+1) Using a classifier to predict treatment label, namely predicting $P_{\theta}(\hat{T}=1|W_i)$
 
 a. In this case, the classifier uses binary indicator of whether the text includes the top 2000 words.
+
+b. The paper mentioned simple logistic regression estimator, while the paper also tested PU (Positive and Unlabelled) estimator.
 
 2) Flip 0 labels to 1 if $P_{\theta}(T = 1|W_i) > 0.5$. The resulting label is $\hat{T}_{lexicon}^*$ in section 5.1.
 
