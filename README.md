@@ -6,6 +6,8 @@ This is a replicate project that aims to replicate the simulation results (Secti
 
 ### Data Cleaning and Treatment Label Derivation
 
+_This step is documented in_ `preprocess.py`
+
 Data cleaning is performed according to section 6.1.1 of the original paper, which are:
 
 a. Define True Labels ($\tilde{T}$): label all 5-star comments as 1 and all 1/2 star comments as 0
@@ -32,10 +34,14 @@ _Side Note 1:_ I would argue that low recall, high precision should be the featu
 
 ### Simulating Y
 
+_This step could be found in_ `experiment.py`
+
 
 ## TEXTCAUSE: Walking Through the Paper
 
 ### T-boosting: Improve the Recall of the Classifier
+
+_Helper functions for this step could be found in_ `t_boost.py`
 
 For the rest of the steps, I develop my results on the proxy lexicon labels ($\hat{T}_{lexicon}$).
 
