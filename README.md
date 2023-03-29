@@ -50,6 +50,6 @@ For this step, the paper doesn't seem to do the exact same thing as described in
 1) Section 5.1 suggests a cut off of 0.5 based on the probability. However, the authors are using a cut off of **0.22 on the z-score of the predicted probabilities for observations that have** $\hat{T} = 0$.
 
 
-
+# W-adjust: Adjusting for other linguistic properties in the language
 
 
