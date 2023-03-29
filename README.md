@@ -29,7 +29,7 @@ Using the same setup, I am able to obtain a similarly-sized dataset of ~16K obse
 _Side Note 1:_ I would argue that low recall, high precision should be the feature of the designed proxy labels: the T-boost will improve the estimation by flipping over 0 labels, which presumably helps only when increasing recall is more important. However, consider that this simulated data has much more 1 labels than 0, the adjustment of flipping makes more sense.
 
 
-## T-boosting
+## T-boosting: Improve the Recall of the Classifier
 
 For the rest of the steps, I develop my results on the proxy lexicon labels ($\hat{T}_{lexicon}$).
 
@@ -50,6 +50,6 @@ For this step, the paper doesn't seem to do the exact same thing as described in
 1) Section 5.1 suggests a cut off of 0.5 based on the probability. However, the authors are using a cut off of **0.22 on the z-score of the predicted probabilities for observations that have** $\hat{T} = 0$.
 
 
-# W-adjust: Adjusting for other linguistic properties in the language
+## W-adjust: Adjusting for other linguistic properties in the language
 
 
