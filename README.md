@@ -34,12 +34,14 @@ _Side Note 1:_ I would argue that low recall, high precision should be the featu
 
 ### Simulating Y
 
-_This step could be found in_ `experiment.py`
+_This step could be found in_ `parametric_experiment.py`
 
 
 ## TEXTCAUSE: Walking Through the Paper
 
 ### T-boosting: Improve the Recall of the Classifier
+
+_This step could be found in_ `parametric_experiment.py`
 
 _Helper functions for this step could be found in_ `t_boost.py`
 
@@ -53,6 +55,8 @@ a. Using a classifier to predict treatment label, namely predicting $P_{\theta}(
 1) In this case, the classifier uses binary indicator of whether the text includes the top 2000 words.
 
 2) The paper mentioned simple logistic regression estimator, while the paper also tested PU (Positive and Unlabelled) estimator.
+
+3) I use the PU classifier from the original source code (https://github.com/rpryzant/causal-text/blob/main/src/main.py) I annotate the code, and deleted unnecessary steps (finding optimal in alpha and out alpha for the actual application) for the experiment replication.
 
 b. Flip 0 labels to 1 if $P_{\theta}(T = 1|W_i) > 0.5$. The resulting label is $\hat{T}_{lexicon}^*$ in section 5.1.
 
