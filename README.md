@@ -2,7 +2,9 @@
 
 This is a replicate project that aims to replicate the simulation results (Section 6) in the Paper _Causal Effects of Linguistic Properties_ (Pryzant et. al, 2021). The link to the latest paper is https://doi.org/10.48550/arXiv.2010.12919. 
 
-## Data Cleaning
+## Prepare Simualtion Data
+
+### Data Cleaning and Treatment Label Derivation
 
 Data cleaning is performed according to section 6.1.1 of the original paper, which are:
 
@@ -28,10 +30,12 @@ Using the same setup, I am able to obtain a similarly-sized dataset of ~16K obse
 
 _Side Note 1:_ I would argue that low recall, high precision should be the feature of the designed proxy labels: the T-boost will improve the estimation by flipping over 0 labels, which presumably helps only when increasing recall is more important. However, consider that this simulated data has much more 1 labels than 0, the adjustment of flipping makes more sense.
 
-## Simulating Y
+### Simulating Y
 
 
-## T-boosting: Improve the Recall of the Classifier
+## TEXTCAUSE: Decomposing the inference method
+
+### T-boosting: Improve the Recall of the Classifier
 
 For the rest of the steps, I develop my results on the proxy lexicon labels ($\hat{T}_{lexicon}$).
 
@@ -53,6 +57,6 @@ For this step, the paper doesn't seem to do the exact same thing as described in
 1) Section 5.1 suggests a cut off of 0.5 based on the probability. However, the authors are using a cut off of **0.22 on the z-score of the predicted probabilities for observations that have** $\hat{T} = 0$.
 
 
-## W-adjust: Adjusting for other linguistic properties in the language
+### W-adjust: Adjusting for other linguistic properties in the language
 
 
