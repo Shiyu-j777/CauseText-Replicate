@@ -33,7 +33,7 @@ _Side Note 1:_ I would argue that low recall, high precision should be the featu
 ### Simulating Y
 
 
-## TEXTCAUSE: Decomposing the inference method
+## TEXTCAUSE: Walking Through the Paper
 
 ### T-boosting: Improve the Recall of the Classifier
 
