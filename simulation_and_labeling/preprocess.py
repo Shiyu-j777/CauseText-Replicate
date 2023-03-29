@@ -52,6 +52,8 @@ if __name__ == "__main__":
     output_data = pre_helper.precision_recall_adjustment(output_data, column = "proxy_lex", 
                                                          precision = 0.94, recall = 0.98)
     
+    output_data.reset_index(inplace = True)
+    
 
     output_data.to_parquet(save_file)
 

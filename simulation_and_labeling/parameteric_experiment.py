@@ -1,10 +1,12 @@
-### The code that execute the experiment of the data
-### This is the version 
+### The code that execute the experiment of one of the processed data
+### Different from the source code, this version intend to provide more annotation and more detailed steps of what has been done
+
 
 import pandas as pd
 import experiment_utils as exp_helper
 import numpy as np
 import os
+import t_boost as t_boost_helper
 
 
 
@@ -22,6 +24,9 @@ if __name__ == "__main__":
     noise_level = "low"
     confound_level = "low"
     offset = 0.9
+    penalty_l2 = 0.
+
+    ### Below is the effect that is tested in the paper
 
     parameter_dictionary = {"treatment_effect":{"low": 0.4,
                                          "high": 0.8},
@@ -55,12 +60,56 @@ if __name__ == "__main__":
                                                    offset))
     
     ################################
-    #### Calculate the Effect #######
+    #### Calculate the Effect ######
     ################################
     
     oracle = exp_helper.adjusted_ATE(labeled_data["true_label"], \
                                      labeled_data["confound"], \
                                         labeled_data["Y"])
+
+    
+
+    unadjusted = exp_helper.naive_ATE(labeled_data["proxy_lex"], labeled_data["Y"])
+
+    
+
+    proxy_lex = exp_helper.adjusted_ATE(labeled_data["proxy_lex"], \
+                                     labeled_data["confound"], \
+                                        labeled_data["Y"])
+    
+    proxy_noise = exp_helper.adjusted_ATE(labeled_data["proxy_noise"], \
+                                     labeled_data["confound"], \
+                                        labeled_data["Y"])
+    
+    
+
+
+    ######################
+    #### T-boosting ######
+    ######################
+
+    ## create tokenized data
+    X_matrix, vocab, vectorizer = t_boost_helper.tokenize_dataset(labeled_data)
+
+    
+    labeled_data["proxy_star_logit"] = t_boost_helper.t_boost_label_logit(X_matrix, labeled_data["proxy_lex"], \
+                                       threshold = 0.22, penalty_weight = 0.00077, flip_zeros = True)
+    
+    labeled_data["proxy_star_PU"] = t_boost_helper.t_boost_label_PU(X_matrix,  labeled_data["proxy_lex"], \
+                                       threshold = 0.22, inner_penalty= 0.00359, outer_penalty= 0.00077, flip_zeros = True)
+    
+
+    ## Effect after boosting
+    T_boost_logit = exp_helper.adjusted_ATE(labeled_data["proxy_star_logit"], \
+                                     labeled_data["confound"], \
+                                        labeled_data["Y"])
+    
+    ## Effect after boosting
+    T_boost_PU = exp_helper.adjusted_ATE(labeled_data["proxy_star_PU"], \
+                                     labeled_data["confound"], \
+                                        labeled_data["Y"])
+    
+
 
     print("The parameter setting is printed below:")
 
@@ -70,15 +119,20 @@ if __name__ == "__main__":
     
     print("Oracle is", oracle*100)
 
-    unadjusted = exp_helper.naive_ATE(labeled_data["proxy_lex"], labeled_data["Y"])
-
+    proxy_noise
     print("Phi-unadjusted is", unadjusted*100)
-
-    proxy_lex = exp_helper.adjusted_ATE(labeled_data["proxy_lex"], \
-                                     labeled_data["confound"], \
-                                        labeled_data["Y"])
-    
     print("Phi-proxy-lex is", proxy_lex * 100)
+    print("Phi-proxy-noise is", proxy_noise * 100)
+
+
+    print("T_boost effect with logistic regression is", T_boost_logit * 100)
+    print("T_boost effect with PU is", T_boost_PU * 100)
+
+    
+
+
+
+    
 
     
 
