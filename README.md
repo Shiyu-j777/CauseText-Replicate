@@ -41,7 +41,7 @@ The steps include:
 
 > In this case, the classifier uses binary indicator of whether the text includes the top 2000 words.
 
-2) Flip 0 labels to 1 if $P_{\theta}(T = 1|W_i) > 0.5$.
+2) Flip 0 labels to 1 if $P_{\theta}(T = 1|W_i) > 0.5$. The resulting label is $\hat{T}_{lexicon}^*$
 
 **Implementation Notes:**
 
