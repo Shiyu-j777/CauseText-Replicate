@@ -69,4 +69,6 @@ For this step, the paper doesn't seem to do the exact same thing as described in
 
 ### W-adjust: Adjusting for other linguistic properties in the language
 
+## Simulation Results
 
+I replicate the first column with all results but the $\psi_{semi-oracle}$. I ran 10 experiments and report the mean.
