@@ -69,6 +69,28 @@ For this step, the paper doesn't seem to do the exact same thing as described in
 
 ### W-adjust: Adjusting for other linguistic properties in the language
 
+The Training steps include: 
+
+1. Padding/Trimming reviews into 128 tokens, and randomly masking 1 of the tokens other than the [CLS] token.
+
+2. Passing the batched samples to BERT and evaluate Masked LM loss: a cross entropy loss on the masked token only (`mlm_loss` in the code, $R(W)$ in the paper)
+
+  - The output embedding of the masked token passes a linear layer of 200, a GeLU layer, a layernorm and final projection to the vocabulary
+
+3. Obtain the embedding of [CLS] token ( $\mathbf{b}(w)$ ) and concatenate with one-hot representation of the confound variable ($C$) (in 0,1 in this replication code, but could be generalized). Namely, $[\mathbf{b}(w)\ \ C]$.
+
+4. At training time, if the example has a positive treatment, pass the example through a linear layer $[M_{1}^b\ \ M_1^c]$ of (embedding_size+2)*200, a Relu layer and a final linear projection layer $M_1^p$ to outcome Y (200 * 2). The result is called $Q(Y|W,\mathbf{b}(w),C, T=1)$. However, if the example has a negative treatment, we pass the example through different layers $[M_{0}^b\ \ M_0^c]$ and $M_0^p$, which is $Q(Y|W,\mathbf{b}(w),C, T=0)$ in the paper. For example $i$, A cross entropy loss was calculated between $Q(Y|W,\mathbf{b}(w),C, T_i)$ and $Y$. This loss is called `Y_loss` in the code.
+
+  - Note: The treatment here can be any label that we have derived from the proxy_labels: proxy_lex (W-adjust in the table), proxy_noise, T_boost (TEXTCAUSE) in the table can all work.
+
+5. Backprop the loss: $\frac{1}{B}\sum_{b}(\beta{L}(Y_b, Q(Y_b|\mathbf{b}(w),C, T_b))+alpha\cdot{R(w)})$. Empirically, $\alpha =1, \beta = 0.1$. 
+
+  - Again, this $T$ can be $\hat{T}_{lexicon}^*$, $\hat{T}_{proxy_lex}$, $\hat{T}_{proxy_noise}$
+
+5. At inference time, we calculate both Q1 and Q0, and, according to the paper, the text adjusted ATE is: $\frac{1}{N}\sum_{i}(Q(Y_b|\mathbf{b}(w),C, T=1) - Q(Y_b|\mathbf{b}(w),C, T=0))$. The authors also use a platt-scale to scale the results, while I don't implement here.
+
+
+
 ## Simulation Results
 
-I replicate the first column with all results but the $\psi_{semi-oracle}$. I ran 10 experiments and report the mean.
+I replicate the first column with all results but the $\psi_{semi-oracle}$ and the W-adjust results. I ran 10 experiments and report the mean.
