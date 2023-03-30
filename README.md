@@ -85,7 +85,7 @@ The Training steps include:
 
 5. Backprop the loss: $\frac{1}{B}\sum_{b}(\beta{L}(Y_b, Q(Y_b|\mathbf{b}(w),C, T_b))+alpha\cdot{R(w)})$. Empirically, $\alpha =1, \beta = 0.1$. 
 
-  - Again, this $T$ can be $\hat{T}_{lexicon}^*$ , $\hat{T}_{proxy_lex}$ , or $\hat{T}_{proxy_noise}$
+  - Again, this $T$ can be $\hat{T}_{lexicon}^{*}$ , $\hat{T}_{proxy_lex}$ , or $\hat{T}_{proxy_noise}$
 
 5. At inference time, we calculate both Q1 and Q0, and, according to the paper, the text adjusted ATE is: $\frac{1}{N}\sum_{i}(Q(Y_b|\mathbf{b}(w),C, T=1) - Q(Y_b|\mathbf{b}(w),C, T=0))$. The authors also use a platt-scale to scale the results, while I don't implement here.
 
