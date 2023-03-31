@@ -98,20 +98,26 @@ The Training steps include:
 
 ## Simulation Results
 
-I replicate the first column with all results but the $\psi_{semi-oracle}$ and the W-adjust results. I ran 10 experiments and report the mean.
+I replicate the first column with all results but the $\psi_{semi-oracle}$ and the W-adjust results. I ran 10 experiments.
+
+**The authors report the mean of these experiment and I will do the same in a separate table**.
 
 The experiment was run on apple M1-pro Chip with pyTorch mps support. The training takes around 24-26 minutes per replicate.
 
+
+### Individual Replicate Results
+
 |Replication#|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|TEXTCAUSE|
 |---|---|---|---|---|---|---|---|
-|1|11.096|6.680|6.923|5.478|6.195|6.371|num|
-|2|9.553|7.306|7.677|6.371|7.632|8.588|9.454|
+|1|9.553|7.306|7.677|6.371|7.632|8.588|9.454|
 
-The given dataset doesn't give any information about oracle and true_label, so I didn't use it to produce the replicate experiment.
+### Individual Replicate Results
+
+### Comments
 
 I have noticed the following issues: 
 
-1. They evaluate the ATE using a plain main over the sequence of replication: I think this is in-appropriate. Instead the deviance from the True ATE is more meaningful
+1. They evaluate the ATE using a plain main over the sequence of replication: I think this is in-appropriate. Instead the deviance from the True ATE is more meaningful, since in real life it is very hard for researchers to get independent replicates, the best they can have is probably K-fold CV, but it is still at the size much smaller than 60.
 
 2. The claimed SE is smaller than 0.5. However, with their 60 replicates, it is suggesting that the individual standard deviation of each ATE estimation occurance is around $0.5*\sqrt{60}$. This is around 3.87, which means that the variation of the estiamtion is **potentially very huge**, given the ground truth size.
 
