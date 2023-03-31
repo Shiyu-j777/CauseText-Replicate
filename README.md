@@ -85,9 +85,10 @@ The Training steps include:
 
   - Note: The treatment here can be any label that we have derived from the proxy_labels: proxy_lex (W-adjust in the table), proxy_noise, T_boost (TEXTCAUSE) in the table can all work.
 
-5. Backprop the loss: $\frac{1}{B}\sum_{b}(\beta{L}(Y_b, Q(Y_b|\mathbf{b}(w),C, T_b))+alpha\cdot{R(w)})$. Empirically, $\alpha =1, \beta = 0.1$. 
+5. Backprop the loss: $\frac{1}{B}\sum_{b}(\beta{L}(Y_b, Q(Y_b|\mathbf{b}(w),C, T_b))+\alpha\cdot{R(w)})$. Empirically, $\alpha =1, \beta = 0.1$. 
 
-Again, this $T$ can be any of the following: $\hat{T}^{\*}\_{lex}$, $\hat{T}\_{proxy-lex}$ , $\hat{T}_{proxy-noise}$
+  - Note: Again, this $T$ can be any of the following: $\hat{T}^{\*}\_{lex}$, $\hat{T}\_{proxy-lex}$ , $\hat{T}_{proxy-noise}$
+  - Additional Note: The original paper doesn't include $\beta$ term. They include it to be compatible with its predecessor.
 
 5. At inference time, we calculate both Q1 and Q0, and, according to the paper, the text adjusted ATE is: $\frac{1}{N}\sum_{i}(Q(Y_b|\mathbf{b}(w),C, T=1) - Q(Y_b|\mathbf{b}(w),C, T=0))$. The authors also use a platt-scale to scale the results, while I don't implement here.
 
