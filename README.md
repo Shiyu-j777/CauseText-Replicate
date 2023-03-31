@@ -36,6 +36,8 @@ _Side Note 1:_ I would argue that low recall, high precision should be the featu
 
 _This step could be found in_ `parametric_experiment.py`
 
+The outcome variable Y follows the following distribution: 
+
 
 ## TEXTCAUSE: Walking Through the Paper
 
@@ -94,3 +96,7 @@ Again, this $T$ can be any of the following: $\hat{T}^{\*}\_{lex}$, $\hat{T}\_{p
 ## Simulation Results
 
 I replicate the first column with all results but the $\psi_{semi-oracle}$ and the W-adjust results. I ran 10 experiments and report the mean.
+
+|Iteration|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy_lex+C}$|$\psi_{proxy_random+C}$|T-boost|TEXTCAUSE|
+|---|---|---|---|---|---|---|
+
