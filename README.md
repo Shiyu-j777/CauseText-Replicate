@@ -92,7 +92,7 @@ The Training steps include:
   - Note: Again, this $T$ can be any of the following: $\hat{T}^{\*}\_{lex}$, $\hat{T}\_{proxy-lex}$ , $\hat{T}_{proxy-noise}$
   - Additional Note: The original paper doesn't include $\beta$ term. They include it to be compatible with its predecessor.
 
-5. At inference time, we calculate both Q1 and Q0, and, according to the paper, the text adjusted ATE is: $\frac{1}{N}\sum_{i}(Q(Y_b|\mathbf{b}(w),C, T=1) - Q(Y_b|\mathbf{b}(w),C, T=0))$. The authors also use a platt-scale to scale the results, while I don't implement here.
+5. At inference time, we calculate both Q1 and Q0, and, according to the paper, the text adjusted ATE is: $\frac{1}{N}\sum_{i}(Q(Y_b|\mathbf{b}(w),C, T=1) - Q(Y_b|\mathbf{b}(w),C, T=0))$. The authors also provide a platt-scale to scale the results, while I don't implement here, and they also didn't use it here.
 
 
 
