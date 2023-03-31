@@ -105,6 +105,7 @@ The experiment was run on apple M1-pro Chip with pyTorch mps support. The traini
 |Replication#|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|TEXTCAUSE|
 |---|---|---|---|---|---|---|---|
 |1|11.096|6.680|6.923|5.478|6.195|6.371|num|
+|2|9.553|7.306|7.677|6.371|7.632|8.588|9.454|
 
 The given dataset doesn't give any information about oracle and true_label, so I didn't use it to produce the replicate experiment.
 
