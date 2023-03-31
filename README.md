@@ -104,4 +104,4 @@ The experiment was run on apple M1-pro Chip with pyTorch mps support. The traini
 
 |Replication Number|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|TEXTCAUSE|
 |---|---|---|---|---|---|---|---|
-|1|9.284|8.133|8.492|4.190|8.060|7.164|num|
+|1|11.501|9.300|8.492|7.023|10.100|10.609|num|
