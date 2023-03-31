@@ -102,7 +102,7 @@ I replicate the first column with all results but the $\psi_{semi-oracle}$ and t
 
 The experiment was run on apple M1-pro Chip with pyTorch mps support. The training takes around 24-26 minutes per replicate.
 
-|Replication Number|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|TEXTCAUSE|
+|Replication#|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|TEXTCAUSE|
 |---|---|---|---|---|---|---|---|
 |1|11.096|6.680|6.923|5.478|6.195|6.371|num|
 
