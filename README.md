@@ -97,6 +97,8 @@ Again, this $T$ can be any of the following: $\hat{T}^{\*}\_{lex}$, $\hat{T}\_{p
 
 I replicate the first column with all results but the $\psi_{semi-oracle}$ and the W-adjust results. I ran 10 experiments and report the mean.
 
+The experiment was run on apple M1-pro with pyTorch support. The training takes around 26 minutes per replicate.
+
 |Iteration|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost|TEXTCAUSE|
 |---|---|---|---|---|---|---|
 
