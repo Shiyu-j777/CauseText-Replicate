@@ -109,3 +109,9 @@ The experiment was run on apple M1-pro Chip with pyTorch mps support. The traini
 
 The given dataset doesn't give any information about oracle and true_label, so I didn't use it to produce the replicate experiment.
 
+I have noticed the following issues: 
+
+1. They evaluate the ATE using a plain main over the sequence of replication: I think this is in-appropriate. Instead the deviance from the True ATE is more meaningful
+
+2. The claimed SE is smaller than 0.5. However, with their 60 replicates, it is suggesting that the individual standard deviation of each ATE estimation occurance is around $0.5*\sqrt{60}$. This is around 3.87, which means that the variation of the estiamtion is **potentially very huge**, given the ground truth size.
+
