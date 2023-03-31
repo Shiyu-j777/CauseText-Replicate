@@ -17,6 +17,8 @@ if __name__ == "__main__":
     ## The file to be processed
     input_file = "~/downloads/Project/SP23_causal_text/data/music_rep_preprocessed.parquet"
 
+    output_file = "~/downloads/Project/SP23_causal_text/data/music_rep_preprocessed_boosted.parquet"
+
     ##input_file = "~/downloads/Project/SP23_causal_text/data/music_preprocessed.tsv"
 
     ### input desirable effect here:
@@ -42,7 +44,7 @@ if __name__ == "__main__":
     #### Simulate the Effect #######
     ################################
 
-    labeled_data = pd.read_parquet(input_file)
+    labeled_data = pd.read_parquet(input_file, )
 
     ##labeled_data = pd.read_csv(input_file, sep = "\t")
 
@@ -119,7 +121,6 @@ if __name__ == "__main__":
     
     print("Oracle is", oracle*100)
 
-    proxy_noise
     print("Phi-unadjusted is", unadjusted*100)
     print("Phi-proxy-lex is", proxy_lex * 100)
     print("Phi-proxy-noise is", proxy_noise * 100)
@@ -128,25 +129,7 @@ if __name__ == "__main__":
     print("T_boost effect with logistic regression is", T_boost_logit * 100)
     print("T_boost effect with PU is", T_boost_PU * 100)
 
-    
+    labeled_data.reset_index(inplace=True)
 
-
-
-    
-
-    
-
-
-
-    
-
-    
-
-    
-
-
-
-
-
-    
+    labeled_data.to_parquet(output_file)
 

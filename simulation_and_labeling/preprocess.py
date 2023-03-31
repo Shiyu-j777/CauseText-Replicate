@@ -24,7 +24,7 @@ if __name__ == "__main__":
     ### 1) the current data has some abnormal entries with tab in it
     ### 2) After removing abnormal entries, there are more than 17000 samples (indicated in pp.6 of Pryzant et. al) in the final data (I have 55980 entries in this data)
 
-    raw_data = pd.read_csv(input_file, sep = "\t", on_bad_lines = 'skip')
+    raw_data = pd.read_csv(input_file, sep = "\t", error_bad_lines=False)
 
     ## Label the true label
     raw_data['true_label'] = raw_data.apply(pre_helper.label_true_treament, axis = 1)
