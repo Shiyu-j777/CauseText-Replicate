@@ -100,8 +100,9 @@ The Training steps include:
 
 I replicate the first column with all results but the $\psi_{semi-oracle}$ and the W-adjust results. I ran 10 experiments and report the mean.
 
-The experiment was run on apple M1-pro with pyTorch support. The training takes around 26 minutes per replicate.
+The experiment was run on apple M1-pro Chip with pyTorch mps support. The training takes around 24-26 minutes per replicate.
 
-|Iteration|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost|TEXTCAUSE|
+|Replication Number|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost|TEXTCAUSE|
 |---|---|---|---|---|---|---|
-
+|1|9.839|6.155|5.841|6.014|5.966|6.360|6.98|
+|2|9.006|6.319|7.222|4.710|7.101|6.898|
