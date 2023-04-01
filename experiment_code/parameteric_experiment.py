@@ -26,7 +26,6 @@ if __name__ == "__main__":
     noise_level = "low"
     confound_level = "low"
     offset = 0.9
-    penalty_l2 = 0.
 
     ### Below is the effect that is tested in the paper
 
@@ -83,6 +82,8 @@ if __name__ == "__main__":
                                      labeled_data["confound"], \
                                         labeled_data["Y"])
     
+   
+    
     
 
 
@@ -114,7 +115,7 @@ if __name__ == "__main__":
 
 
     print("The parameter setting is printed below:")
-
+    print("Accuracy of T hat:", np.mean(labeled_data["proxy_lex"] == labeled_data["true_label"]))
     print("Treatment Effect:", treatment_level)
     print("Confound Effect:", confound_level)
     print("Noise:", noise_level)

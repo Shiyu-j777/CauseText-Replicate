@@ -5,7 +5,9 @@ from transformers import DistilBertTokenizer, DistilBertPreTrainedModel, DistilB
 from transformers import get_linear_schedule_with_warmup, AdamW
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 import datasets
+from datasets import ClassLabel
 import numpy as np
+
 
 from tqdm import tqdm
 
@@ -36,10 +38,15 @@ def experiment_data_builder(text, treatment, confounder, Y = None, tokenizer = N
     output_data = datasets.Dataset.from_dict(output_data)
     output_data = output_data.map(encode_data, fn_kwargs = {"tokenizer": tokenizer}, batched = True)
     output_data = output_data.map(get_length,  batched = False)
+    output_data = output_data.map(lambda x: {"treatment_for_split": x["treatment"]})
+
+    feat_treatment = ClassLabel(num_classes = 2,names=["no_treatment", "treatment"])
+
+    output_data = output_data.cast_column("treatment_for_split", feature = feat_treatment)
 
     ### split into test val train split
-    train_val_split = output_data.train_test_split(test_size = 0.25)
-    val_test_split = train_val_split["test"].train_test_split(test_size = 0.67)
+    train_val_split = output_data.train_test_split(test_size = 0.33, stratify_by_column = "treatment_for_split")
+    val_test_split = train_val_split["test"].train_test_split(test_size = 0.67, stratify_by_column = "treatment_for_split")
     
     output_data = datasets.DatasetDict({"train":train_val_split["train"],
                                         "val":val_test_split["train"],
@@ -80,11 +87,13 @@ class cause_bert_model(DistilBertPreTrainedModel):
         else:
             self.mydevice = None
 
+    
         self.num_labels = config.num_labels
         self.vocab_size = config.vocab_size
 
         ### set up the bert adjustment model
-        self.bert_adjustment_model = DistilBertModel(config)
+        ### Just noticed that this field could not be changed!! Since it is inherited from the huggingface model prefix
+        self.distilbert = DistilBertModel(config)
 
         ### This is the projection of mlm part
         self.projection_to_vocab = nn.Sequential(nn.Linear(self.config.dim, self.config.dim),
@@ -95,6 +104,8 @@ class cause_bert_model(DistilBertPreTrainedModel):
             if isinstance(layer, nn.Linear):
                 torch.nn.init.xavier_uniform_(layer.weight)
                 torch.nn.init.zeros_(layer.bias)
+        
+        
 
 
         ## initialize the weights for the projection layer
@@ -111,9 +122,10 @@ class cause_bert_model(DistilBertPreTrainedModel):
         self.Q_cls["0"].apply(weights_init)
         self.Q_cls["1"].apply(weights_init)
         ## Initialize weights for the model
-        self.init_weights()
+        
         self.cross_loss = nn.CrossEntropyLoss()
         self.softmax = nn.Softmax(dim =1)
+        self.init_weights()
 
 
     def forward(self, input_ids, length_sentence, mask, confound,\
@@ -160,7 +172,7 @@ class cause_bert_model(DistilBertPreTrainedModel):
             input_ids.scatter_(1, mask_positions, MASK_ID)
 
         ## pass the input through bert
-        full_output = self.bert_adjustment_model(input_ids, attention_mask = mask)[0]
+        full_output = self.distilbert(input_ids, attention_mask = mask)[0]
         cls_output = full_output[:,0,:]
 
         ## onehot encode the confounders
@@ -173,6 +185,7 @@ class cause_bert_model(DistilBertPreTrainedModel):
                                            mlm_eval_ground_truth.view(-1))
         else:
             mlm_loss = 0.0
+
             
         Y_classifier_input = torch.cat((cls_output,confound), dim = 1)
 
@@ -214,9 +227,7 @@ class cause_bert_model(DistilBertPreTrainedModel):
     
 class training_cause_text:
     def __init__(self, Y_weight = 0.1, mlm_weight = 1, batch_size = 32):
-        ### Load the weight
-        self.mlm_weight = mlm_weight
-        self.Y_weight = Y_weight
+        
 
         ### Load the model
         self.distilBERT_Cause = cause_bert_model.from_pretrained(
@@ -224,6 +235,9 @@ class training_cause_text:
             num_labels=2,
             output_attentions=False,
             output_hidden_states=False)
+        ### Load the weight
+        self.mlm_weight = mlm_weight
+        self.Y_weight = Y_weight
         
         self.device = None
         
@@ -322,7 +336,7 @@ class training_cause_text:
     
     def ATE_text_adjust(self, Q0_records, Q1_records):
         results_prob = np.array(list(zip(Q0_records, Q1_records)))
-        ### Their source code is incorrect: they do Q0-Q1
+        
         return(np.mean(results_prob[:,1]- results_prob[:,0]))
         
     def create_data_loader(self, dataset, sampler = "random"):
@@ -332,6 +346,8 @@ class training_cause_text:
         data_loader = DataLoader(dataset, sampler=sampler, batch_size=self.batch_size)
 
         return(data_loader)
+    
+
 
         
 
