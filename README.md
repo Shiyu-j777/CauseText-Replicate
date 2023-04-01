@@ -42,7 +42,7 @@ The outcome variable Y follows the following distribution:
 
 $$Y\sim{Bernoulli(\sigma(\beta_c\cdot(\pi({C})-\beta_o)+T\cdot{\beta_t}+ N(o, \gamma)}))$$
 
-Particularly, $\pi(C)$ is the propensity (i.e. $P(T=1|C)$). $\beta_c$ is the confounding effect, $\beta_o$ is the offset, and $\beta_t$ is the treatment effect. $\gamma$ is the variance of the normal distribution. In my replication, $\beta_c=-0.4, \beta_o = 0.9,  \beta_t = 0.4, \gamma = 0$.
+Particularly, $\pi(C)$ is the propensity (i.e. $P(T=1|C)$ ). $\beta_c$ is the confounding effect, $\beta_o$ is the offset, and $\beta_t$ is the treatment effect. $\gamma$ is the variance of the normal distribution. In my replication, $\beta_c=-0.4, \beta_o = 0.9,  \beta_t = 0.4, \gamma = 0$.
 
 
 ## TEXTCAUSE: Walking Through the Paper
