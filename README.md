@@ -115,6 +115,7 @@ The highlighted part is the main result that I want to replicate.
 |Net Difference|-0.70|-0.17|-0.50|-2.49|NA|-1.33|**-0.74**|
 
 |Difference between The Ground Truth and The Estimators|$\psi_{unadjusted}|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|**TEXTCAUSE**|
+|---|---|---|---|---|---|---|
 |Replicate Difference with Ground Truth|2.55|3.05|3.48|2.42|2.44|**0.54**|
 |Paper Diference with Ground Truth|3.08|3.25|1.67|NA|1.81|**0.50**|
 
