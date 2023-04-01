@@ -77,6 +77,8 @@ For this step, the paper doesn't seem to do the exact same thing as described in
 
 ### W-adjust: Adjusting for other linguistic properties in the language
 
+This step could be found in `BERT_estimation.py`. Helper functions are in `Cause_BERT_helper.py`.
+
 The Training steps include: 
 
 1. Padding/Trimming reviews into 128 tokens, and randomly masking 1 of the tokens other than the [CLS] token.
