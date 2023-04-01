@@ -108,14 +108,15 @@ The experiment was run on apple M1-pro Chip with pyTorch mps support. The traini
 
 The highlighted part is the main result that I want to replicate.
 
-|Type|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|TEXTCAUSE|
+|Type|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|**TEXTCAUSE**|
 |---|---|---|---|---|---|---|---|
 |My Replication|9.22|6.67|6.17|5.74|6.80|6.78|**8.68**|
 |Paper Results|9.92|6.84|6.67|8.25|NA|8.11|**9.42**|
-|Net Difference|-0.70|-0.17|-0.50|-2.49|NA|-1.33|-0.74|
-|Paper Diference with Ground Truth|9.92|6.84|6.67|8.25|NA|8.11|**9.42**|
-|Replicate Difference with Ground Truth|9.22|6.67|6.17|5.74|6.80|6.78|**8.68**|
+|Net Difference|-0.70|-0.17|-0.50|-2.49|NA|-1.33|**-0.74**|
 
+|Difference between The Ground Truth and The Estimators|$\psi_{unadjusted}|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|**TEXTCAUSE**|
+|Replicate Difference with Ground Truth|2.55|3.05|3.48|2.42|2.44|**0.54**|
+|Paper Diference with Ground Truth|3.08|3.25|1.67|NA|1.81|**0.50**|
 
 
 Given that my ATE estimate is on average lower by 0.7, I think my replication result is relatively close. I expect my estimation to be closer with the paper given more replications.
