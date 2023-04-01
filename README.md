@@ -98,18 +98,35 @@ The Training steps include:
 
 ## Simulation Results
 
-I replicate the first column with all results but the $\psi_{semi-oracle}$ and the W-adjust results. I ran 10 experiments.
-
-**The authors report the mean of these experiment and I will do the same in a separate table**.
+I replicate the first column (low noise, low confound, and low treatment) with all results but the $\psi_{semi-oracle}$ and the W-adjust results. I ran 10 experiments.
 
 The experiment was run on apple M1-pro Chip with pyTorch mps support. The training takes around 24-26 minutes per replicate.
+
+### Replication Experiment Results v.s. Paper Results
+
+**The authors report the mean of these experiment and I will do the same in this table**.
+
+|Type|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|TEXTCAUSE|
+|---|---|---|---|---|---|---|---|
+|My Replication|9.22|6.67|6.17|5.74|6.80|6.78|8.68|
+|Paper Results|9.92|6.84|6.67|8.25|8.11|9.42|
+
 
 
 ### Individual Replicate Results
 
 |Replication#|$\psi_{oracle}$|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|TEXTCAUSE|
 |---|---|---|---|---|---|---|---|
-|1|9.553|7.306|7.677|6.371|7.632|8.588|9.454|
+|1|9.903|7.221|6.289|6.706|7.599|7.301|11.207|
+|2|9.553|7.306|7.677|6.371|7.632|8.588|9.454|
+|3|9.707|7.184|6.202|5.667|6.814|6.933|1.98|
+|4|7.438|4.942|4.097|3.876|4.135|4.376|6.108|
+|5|10.072|7.915|7.962|5.588|9.251|8.842|7.405|
+|6|11.203|8.255|8.944|6.227|11.589|10.698|9.540|
+|7|7.615|7.086|5.778|4.859|6.472|6.512|14.905|
+|8|10.154|7.361|7.413|6.282|4.667|4.994|8.803|
+|9|7.339|6.099|4.585|5.812|4.013|5.737|9.756|
+|10|8.298|3.313|2.746|6.053|5.810|6.211|7.518|
 
 ### Individual Replicate Results
 
