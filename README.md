@@ -122,8 +122,8 @@ The highlighted part is the main result that I want to replicate.
 
 |Difference between The Ground Truth and The Estimators|$\psi_{unadjusted}$|$\psi_{proxy-lex+C}$|$\psi_{proxy-noise+C}$|T-boost-Logit|T-boost-PU|**TEXTCAUSE**|
 |---|---|---|---|---|---|---|
-|Replicate Difference with Ground Truth|2.55|3.05|3.48|2.42|2.44|**0.54**|
-|Paper Diference with Ground Truth|3.08|3.25|1.67|NA|1.81|**0.50**|
+|Replicate Difference with Ground Truth, $\psi_{oracle}$|2.55|3.05|3.48|2.42|2.44|**0.54**|
+|Paper Diference with Ground Truth, $\psi_{oracle}$|3.08|3.25|1.67|NA|1.81|**0.50**|
 
 
 Given that my ATE estimate is on average lower by 0.7, I think my replication result is relatively close. I expect my estimation to be closer with the paper given more replications.
