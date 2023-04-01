@@ -28,7 +28,7 @@ Upon further examination, in their source code, the authors balanced the dataset
 
 a. Dropping some data so the propensity to $P(T=1|C=0) = 0.9$ and $P(T=1|C=1) = 0.7$, and then 
 
-b. For the proxy label, further drop some data such that they have a 0.94 precision and 0.98 recall (They resemble cases when the true_labels can be discovered all the time). 
+b. For the proxy label, further drop some data such that they have a 0.94 precision and 0.98 recall (They resemble cases when the true_labels can be discovered almost all the time). 
 
 Using the same setup, I am able to obtain a similarly-sized dataset of ~16K observations.
 
