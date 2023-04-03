@@ -32,7 +32,7 @@ b. For the proxy label, further drop some data such that they have a 0.94 precis
 
 Using the same setup, I am able to obtain a similarly-sized dataset of ~16K observations.
 
-_Side Note 1:_ I would argue that low recall, high precision should be the feature of the designed proxy labels: the T-boost will improve the estimation by flipping over 0 labels, which presumably helps only when increasing recall is more important. However, consider that this simulated data has much more 1 labels than 0, the adjustment of flipping makes more sense.
+_Side Note 1:_ I would argue that low recall, high precision should be the feature of the designed proxy labels: the T-boost will improve the estimation by flipping over 0 labels, which presumably helps only when increasing recall is more important. However, consider that this simulated data has much more 1 labels than 0, this adjustment also makes sense.
 
 ### Simulating Y
 
