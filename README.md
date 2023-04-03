@@ -145,7 +145,6 @@ Given that my ATE estimate is on average lower by 0.7, I think my replication re
 |9|7.339|6.099|4.585|5.812|4.013|5.737|9.756|
 |10|8.298|3.313|2.746|6.053|5.810|6.211|7.518|
 
-### Individual Replicate Results
 
 ### Comments
 
